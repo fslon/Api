@@ -28,10 +28,7 @@ namespace TourApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TouristAgencyDbContext>(ServiceLifetime.Scoped);
-
-            services.AddRazorPages();
             services.AddControllers();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TourApi", Version = "v1" });
@@ -45,10 +42,7 @@ namespace TourApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TourApi v1");
-                });
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TourApi v1"));
             }
 
             app.UseHttpsRedirection();
@@ -59,7 +53,6 @@ namespace TourApi
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
         }
